@@ -9,7 +9,14 @@ class Restaurant < ApplicationRecord
   belongs_to :neighborhood,
              :counter_cache => true
 
+  has_many   :bookmarks,
+             :dependent => :destroy
+
   # Indirect associations
+
+  has_many   :diners,
+             :through => :bookmarks,
+             :source => :user
 
   # Validations
 
